@@ -730,3 +730,24 @@
     window.ZeroClipboard = ZeroClipboard;
   }
 })();
+
+
+$(document).ready(function()
+{
+    
+                var clientTarget = new ZeroClipboard( $("#target-to-copy"), {
+              moviePath: "http://zeroclipboard.googlecode.com/git/ZeroClipboard.swf",
+              debug: false
+            } );
+
+            clientTarget.on( "load", function(clientTarget)
+            {
+                $('#flash-loaded').fadeIn();
+
+                clientTarget.on( "complete", function(clientTarget, args) {
+                    clientTarget.setText( args.text );
+                    $('#target-to-copy-text').fadeIn();
+                } );
+            } );
+        
+    });
